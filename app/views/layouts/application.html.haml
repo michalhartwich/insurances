@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title Insurances
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %header
+      %nav.navbar.navbar-default
+        .container
+          .navbar-header
+            .collapse.navbar-collapse
+              %ul.nav.navbar-nav
+                %li
+                  =link_to 'Clients', '#'
+    = yield
