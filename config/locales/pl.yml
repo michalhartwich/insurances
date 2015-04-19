@@ -1,2 +1,6 @@
 pl:
-  hello: "Hello world"
+  menu:
+    clients: Klienci
+    policies: Polisy
+    groups: Grupy
+    items: Przedmioty
