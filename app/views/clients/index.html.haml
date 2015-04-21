@@ -1,0 +1,49 @@
+-provide :header_title, icon('users',t('menu.clients'))
+.toolbox.btn-group
+  = create_button t('clients.add'), new_client_path, icon: 'plus'
+  = create_button t('clients.delete'), new_client_path, icon: 'trash'
+%table.table
+  %thead
+    %tr
+      %th
+        \#
+      %th
+        = t 'clients.surname'
+      %th
+        = t 'clients.name'
+      %th
+        = t 'clients.company'
+      %th
+        = t 'clients.REGON'
+      %th
+        = t 'clients.ID'
+      %th
+        = t 'clients.street'
+      %th
+        = t 'clients.city'
+      %th
+        = t 'helpers.actions'
+  %tbody
+  -@clients.each_with_index do |client, index|
+    %tr
+      %td
+        = index+1
+      %td
+        = client.surname
+      %td
+        = client.name
+      %td
+        = client.company
+      %td
+        = client.REGON
+      %td
+        = client.PESEL
+      %td
+        = client.street
+      %td
+        = client.city
+      %td
+        .btn-group
+          = create_button t('helpers.details'), client_path(client), icon: 'bars'
+          = create_button t('helpers.edit'), edit_client_path(client), icon: 'pencil'
+          = create_button t('helpers.delete'), client_path(client), method: :delete, data: { confirm: t('clients.delete_confirm', client: client.full_name) }, icon: 'trash'

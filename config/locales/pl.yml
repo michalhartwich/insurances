@@ -4,3 +4,47 @@ pl:
     policies: Polisy
     groups: Grupy
     items: Przedmioty
+  clients:
+    title: Klienci
+    surname: Nazwisko
+    name: Imię
+    company: Firma
+    ID: PESEL
+    REGON: REGON
+    telephone: Telefon
+    email: E-mail
+    street: Ulica
+    city: Miasto
+    zip: Kod pocztowy
+    comments: Uwagi
+    add: Dodaj klienta
+    edit: Edytuj klienta
+    delete: Usuń klienta
+    company: Firma
+    private: Osoba fizyczna
+    delete_confirm: "Czy na pewno chcesz usunąć klienta %{client} ?"
+    create_success: "Klient został pomyślnie dodany."
+    create_error: "Formularz zawiera błędy."
+    destroy_success: "Klient %{client} został pomyślnie usunięty."
+  helpers:
+    save: Zapisz
+    cancel: Anuluj
+    actions: Operacje
+    delete: Usuń
+    edit: Edytuj
+    details: Szczegóły
+    back: Powrót
+    label:
+      client:
+        surname: Nazwisko
+        name: Imię
+        company: Firma
+        PESEL: PESEL
+        REGON: REGON
+        telephone_number: Telefon
+        activity: Rodzaj działalności
+        e_mail: E-mail
+        street: Ulica
+        city: Miasto
+        zip_code: Kod pocztowy
+        comments: Uwagi

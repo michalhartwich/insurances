@@ -1,0 +1,32 @@
+=bootstrap_form_for(@client) do |f|
+  .row.client-form
+    .col-sm-6
+      =f.text_field :surname
+    .col-sm-6
+      =f.text_field :name
+    .col-sm-6
+      =f.label :activity
+      .form-group.activity-switcher
+        =f.radio_button :activity, 0, label: t('clients.company'), inline: true, checked: true, class: ('checked' if @client.is_company?)
+        =f.radio_button :activity, 1, label: t('clients.private'), inline: true, class: ('checked' unless @client.is_company?)
+    .col-sm-6.regon{class: ('hide' unless @client.is_company?)}
+      =f.text_field :REGON
+    .col-sm-6.pesel{class: ('hide' if @client.is_company?)}
+      =f.text_field :PESEL
+    .col-sm-12.company{class: ('hide' unless @client.is_company?)}
+      =f.text_field :company
+    .col-sm-6
+      =f.text_field :telephone_number
+    .col-sm-6
+      =f.text_field :e_mail
+    .col-sm-6.col-md-4
+      =f.text_field :street
+    .col-sm-6.col-md-4
+      =f.text_field :city
+    .col-sm-6.col-md-4
+      =f.text_field :zip_code
+    .col-sm-2.pull-right
+      =f.submit t('helpers.save'), class: 'btn-block'
+    .col-sm-2.pull-right
+      = create_button t('helpers.cancel'), clients_path, class: 'btn-block', icon: 'times'
+    =@client.activity
