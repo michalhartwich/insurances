@@ -1,4 +1,7 @@
 class ClientsController < ApplicationController
+
+
+
   def index
     @clients = Client.all
   end
@@ -17,7 +20,8 @@ class ClientsController < ApplicationController
       flash[:success] = t 'clients.create_success'
       redirect_to clients_path
     else
-      flash.now[:danger] = t 'clients.create_error'
+      flash.now[:danger] = t 'helpers.form_error'
+      flash.now[:errors] = @client.errors
       render 'new'
     end
   end
@@ -37,6 +41,8 @@ class ClientsController < ApplicationController
     if @client.update_attributes(client_params)
       redirect_to clients_path, success: 'dziala'
     else
+      flash.now[:danger] = t 'helpers.form_error'
+      flash.now[:errors] = @client.errors
       render 'edit'
     end
   end

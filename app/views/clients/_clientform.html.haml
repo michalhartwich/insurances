@@ -1,32 +1,33 @@
-=bootstrap_form_for(@client) do |f|
+=bootstrap_form_for(@client, inline_errors: false, label_errors: false) do |f|
   .row.client-form
     .col-sm-6
-      =f.text_field :surname
+      =f.text_field :surname, disabled: read_mode?
     .col-sm-6
-      =f.text_field :name
-    .col-sm-6
-      =f.label :activity
-      .form-group.activity-switcher
-        =f.radio_button :activity, 0, label: t('clients.company'), inline: true, checked: true, class: ('checked' if @client.is_company?)
-        =f.radio_button :activity, 1, label: t('clients.private'), inline: true, class: ('checked' unless @client.is_company?)
+      =f.text_field :name, disabled: read_mode?
+    -unless read_mode?
+      .col-sm-6
+        =f.label :activity
+        .form-group.activity-switcher
+          =f.radio_button :activity, 0, label: t('clients.company'), inline: true, checked: true, class: ('checked' if @client.is_company?)
+          =f.radio_button :activity, 1, label: t('clients.private'), inline: true, class: ('checked' unless @client.is_company?)
     .col-sm-6.regon{class: ('hide' unless @client.is_company?)}
-      =f.text_field :REGON
+      =f.text_field :REGON, disabled: read_mode?
     .col-sm-6.pesel{class: ('hide' if @client.is_company?)}
-      =f.text_field :PESEL
+      =f.text_field :PESEL, disabled: read_mode?
     .col-sm-12.company{class: ('hide' unless @client.is_company?)}
-      =f.text_field :company
+      =f.text_field :company, disabled: read_mode?
     .col-sm-6
-      =f.text_field :telephone_number
+      =f.text_field :telephone_number, disabled: read_mode?
     .col-sm-6
-      =f.text_field :e_mail
+      =f.text_field :e_mail, disabled: read_mode?
     .col-sm-6.col-md-4
-      =f.text_field :street
+      =f.text_field :street, disabled: read_mode?
     .col-sm-6.col-md-4
-      =f.text_field :city
+      =f.text_field :city, disabled: read_mode?
     .col-sm-6.col-md-4
-      =f.text_field :zip_code
-    .col-sm-2.pull-right
-      =f.submit t('helpers.save'), class: 'btn-block'
-    .col-sm-2.pull-right
-      = create_button t('helpers.cancel'), clients_path, class: 'btn-block', icon: 'times'
-    =@client.activity
+      =f.text_field :zip_code, disabled: read_mode?
+    -unless read_mode?
+      .col-sm-2.pull-right
+        =f.submit t('helpers.save'), class: 'btn-block', icon: 'ok'
+      .col-sm-2.pull-right
+        = create_button t('helpers.cancel'), clients_path, class: 'btn-block', icon: 'times'

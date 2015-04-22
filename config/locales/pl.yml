@@ -34,6 +34,7 @@ pl:
     edit: Edytuj
     details: Szczegóły
     back: Powrót
+    form_error: "Formularz zawiera następujące błędy:"
     label:
       client:
         surname: Nazwisko
@@ -48,3 +49,31 @@ pl:
         city: Miasto
         zip_code: Kod pocztowy
         comments: Uwagi
+        created_at: Data dodania
+        updated_at: Data ostatniej aktualizacji
+  activerecord:
+    errors:
+      models:
+        client:
+          attributes:
+            surname:
+              blank: Pole Nazwisko jest wymagane.
+            name:
+              blank: Pole Imię jest wymagane.
+            REGON:
+              blank: Pole REGON jest wymagane.
+              taken: "Klient o podanym REGON-ie już istnieje."
+              not_a_number: "Podany REGON zawiera niedozwolone znaki."
+              wrong_length: "Podany REGON ma nieprawidłową długość."
+            PESEL:
+              blank: Pole PESEL jest wymagane.
+              taken: "Klient o podanym PESEL-u już istnieje."
+              not_a_number: "Podany PESEL zawiera niedozwolone znaki."
+              wrong_length: "Podany PESEL ma nieprawidłową długość."
+            e_mail:
+              invalid: "Podany adres e-mail jest nieprawidłowy."
+            zip_code:
+              invalid: "Podany kod pocztowy jest nieprawidłowy."
+  time:
+    formats:
+      date_time: "%d-%m-%Y %H:%m"

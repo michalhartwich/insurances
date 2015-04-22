@@ -1,6 +1,13 @@
 
 -flash.each do |key, value|
-  %div{class: "alert alert-#{key}"}
-    %a(href='#' class='close' data-dismiss='alert')
-      &times;
-    = value
+  -if key != 'errors'
+    %div{class: "alert alert-#{key}"}
+      %a(href='#' class='close' data-dismiss='alert')
+        &times;
+      = value
+      -unless flash[:errors].nil?
+        %ul
+          - flash[:errors].each do |attr, msg|
+            %li
+              =msg
+           

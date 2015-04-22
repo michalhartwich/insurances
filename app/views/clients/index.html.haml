@@ -1,8 +1,7 @@
 -provide :header_title, icon('users',t('menu.clients'))
 .toolbox.btn-group
   = create_button t('clients.add'), new_client_path, icon: 'plus'
-  = create_button t('clients.delete'), new_client_path, icon: 'trash'
-%table.table
+%table.table.table-hover
   %thead
     %tr
       %th
@@ -25,7 +24,7 @@
         = t 'helpers.actions'
   %tbody
   -@clients.each_with_index do |client, index|
-    %tr
+    %tr{class: ('company-bg' if client.is_company?)}
       %td
         = index+1
       %td
