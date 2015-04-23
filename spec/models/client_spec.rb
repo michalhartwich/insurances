@@ -9,7 +9,7 @@ RSpec.describe Client, :type => :model do
   it {should validate_presence_of :surname}
 
   context 'is a company' do
-    before {subject.stub(:activity) { 0 }}
+    before {allow(subject).to receive(:activity).and_return(0)}
     it {should validate_presence_of :REGON}
     it {should validate_length_of(:REGON).is_equal_to(10) }
     # it {should validate_uniqueness_of(:REGON)}
@@ -17,7 +17,7 @@ RSpec.describe Client, :type => :model do
   end
 
   context 'is a private person' do
-    before {subject.stub(:activity) { 1 }}
+    before {allow(subject).to receive(:activity).and_return(1)}
     it {should validate_presence_of :PESEL}
     it {should validate_length_of(:PESEL).is_equal_to(11)}
     it {should validate_numericality_of :PESEL}

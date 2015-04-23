@@ -26,6 +26,8 @@
       =f.text_field :city, disabled: read_mode?
     .col-sm-6.col-md-4
       =f.text_field :zip_code, disabled: read_mode?
+    .col-sm-12
+      =f.text_area :comments, disabled: read_mode?
     -unless read_mode?
       .col-sm-2.pull-right
         =f.submit t('helpers.save'), class: 'btn-block', icon: 'ok'
