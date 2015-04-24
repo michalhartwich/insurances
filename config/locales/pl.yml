@@ -26,6 +26,16 @@ pl:
     create_success: "Klient został pomyślnie dodany."
     create_error: "Formularz zawiera błędy."
     destroy_success: "Klient %{client} został pomyślnie usunięty."
+  groups:
+    name: Nazwa grupy
+    description: Opis
+    add: Dodaj grupę
+    edit: Edytuj grupę
+    delete: Usuń grupę
+    delete_confirm: "Czy na pewno chcesz usunąć grupę %{group}?"
+    create_success: "Grupa została pomyślnie dodana"
+    update_success: "Grupa %{group} została zaktualizowana."
+    destroy_success: "Grupa %{group} został pomyślnie usunięty."
   helpers:
     save: Zapisz
     cancel: Anuluj
@@ -51,6 +61,10 @@ pl:
         comments: Uwagi
         created_at: Data dodania
         updated_at: Data ostatniej aktualizacji
+      group:
+        name: Nazwa grupy
+        description: Opis
+        create_success: Grupa została pomyślnie dodana.
   activerecord:
     errors:
       models:
@@ -74,6 +88,10 @@ pl:
               invalid: "Podany adres e-mail jest nieprawidłowy."
             zip_code:
               invalid: "Podany kod pocztowy jest nieprawidłowy."
+        group:
+          attributes:
+            name:
+              blank: Pole Nazwa grupy jest wymagane.
   time:
     formats:
       date_time: "%d-%m-%Y %H:%m"

@@ -1,0 +1,28 @@
+-provide :header_title, icon('database',t('menu.groups'))
+.toolbox.btn-group
+  = create_button t('groups.add'), new_group_path, icon: 'plus'
+%table.table.table-hover.table-striped
+  %thead
+    %tr
+      %th
+        \#
+      %th
+        = t 'groups.name'
+      %th
+        = t 'groups.description'
+      %th
+        = t 'helpers.actions'
+  %tbody
+    - @groups.each_with_index do |group, index|
+      %tr
+        %td
+          = index+1
+        %td
+          = group.name
+        %td
+          = group.description
+        %td
+          .btn-group
+            = create_button t('helpers.details'), group_path(group), icon: 'bars'
+            = create_button t('helpers.edit'), edit_group_path(group), icon: 'pencil'
+            = create_button t('helpers.delete'), group_path(group), method: :delete, data: { confirm: t('groups.delete_confirm', group: group.name) }, icon: 'trash'

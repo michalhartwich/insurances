@@ -81,7 +81,13 @@ RSpec.describe ClientsController, :type => :controller do
         expect(client.name).to eq 'John'
       end
     end
+  end
 
+  describe '#destroy' do
+    let!(:client) { create(:client, name: 'John') }
+    it 'deletes client' do
+      expect{ delete :destroy, id: client }.to change(Client, :count).by(-1)
+    end
   end
 
 end
