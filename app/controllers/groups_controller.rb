@@ -45,6 +45,11 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
+  def items
+    @group = Group.find(params[:group_id])
+    @items = Item.where(group_id: params[:group_id])
+  end
+
   private
     def group_params
       params.require(:group).permit(:name, :description)

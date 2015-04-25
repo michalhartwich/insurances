@@ -1,5 +1,5 @@
 .toolbox.btn-group
-  = create_button t('helpers.back'), groups_path, icon: 'reply'
+  = create_button t('helpers.back'), request.referer, icon: 'reply'
   = create_button t('groups.add'), new_group_path, icon: 'plus'
   -if read_mode?
     = create_button t('groups.edit'), edit_group_path(@group), icon: 'pencil'

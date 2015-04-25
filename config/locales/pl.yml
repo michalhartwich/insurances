@@ -29,13 +29,25 @@ pl:
   groups:
     name: Nazwa grupy
     description: Opis
+    items: Przemioty
     add: Dodaj grupę
     edit: Edytuj grupę
     delete: Usuń grupę
-    delete_confirm: "Czy na pewno chcesz usunąć grupę %{group}?"
+    delete_confirm: "Czy na pewno chcesz usunąć grupę %{group}?\n\nPrzedmioty powiązane z grupą zostaną również usunięte!"
     create_success: "Grupa została pomyślnie dodana"
     update_success: "Grupa %{group} została zaktualizowana."
-    destroy_success: "Grupa %{group} został pomyślnie usunięty."
+    destroy_success: "Grupa %{group} został pomyślnie usunięta."
+  items:
+    name: Nazwa przedmiotu
+    description: Opis
+    group: Grupa
+    edit: Edytuj przedmiot
+    add: Dodaj przedmiot
+    delete: Usuń przedmiot
+    delete_confirm: "Czy na pewno chcesz usunąć przedmiot %{item}"
+    create_success: "Przedmiot %{item} został pomyślnie utworzony."
+    update_success: "Przedmiot %{item} został pomyślnie zaktualizowany."
+    destroy_success: "Przedmiot %{item} został pomyślnie usunięty."
   helpers:
     save: Zapisz
     cancel: Anuluj
@@ -64,7 +76,9 @@ pl:
       group:
         name: Nazwa grupy
         description: Opis
-        create_success: Grupa została pomyślnie dodana.
+      item:
+        name: Nazwa przedmiotu
+        description: Opis
   activerecord:
     errors:
       models:
@@ -92,6 +106,8 @@ pl:
           attributes:
             name:
               blank: Pole Nazwa grupy jest wymagane.
+        item:
+          attributes:
   time:
     formats:
       date_time: "%d-%m-%Y %H:%m"

@@ -1,0 +1,31 @@
+-provide :header_title, icon('database',@group.name)
+.col-xs-12
+  = render 'groups/toolbox'
+.col-sm-2
+  = render 'groups/sidebar'
+.col-sm-9
+  %table.table.table-hover.table-striped
+    %thead
+      %tr
+        %th
+          \#
+        %th
+          = t 'items.name'
+        %th
+          = t 'items.description'
+        %th
+          = t 'helpers.actions'
+    %tbody
+      - @items.each_with_index do |item, index|
+        %tr
+          %td
+            = index+1
+          %td
+            = link_to item.name, item
+          %td
+            = item.description
+          %td
+            .btn-group
+              = create_button '', item_path(item), icon: 'bars', title: t('helpers.details')
+              = create_button '', edit_item_path(item), icon: 'pencil', title: t('helpers.edit')
+              = create_button '', item_path(item), method: :delete, data: { confirm: t('items.delete_confirm', item: item.name) }, icon: 'trash', title: t('helpers.delete')

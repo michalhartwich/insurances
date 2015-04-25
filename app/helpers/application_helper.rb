@@ -8,7 +8,7 @@ module ApplicationHelper
 
   def create_button(text, url, html_options={})
     mode = html_options[:mode] || 'default'
-    html_options.merge! class: "btn btn-#{mode} #{html_options[:class]}"
+    html_options.merge! class: ("btn btn-#{mode} #{html_options[:class]}" + ( text.blank? ? ' img-button' : ''))
     link_to icon(html_options[:icon], text), url, html_options
   end
 

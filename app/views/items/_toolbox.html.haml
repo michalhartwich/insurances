@@ -1,0 +1,7 @@
+.toolbox.btn-group
+  = create_button t('helpers.back'), request.referer, icon: 'reply'
+  = create_button t('items.add'), new_item_path, icon: 'plus'
+  -if read_mode?
+    = create_button t('items.edit'), edit_item_path(@item), icon: 'pencil'
+  = create_button t('items.delete'), item_path(@item), method: :delete, 
+    data: { confirm: t('items.delete_confirm', item: @item.name) }, icon: 'trash'

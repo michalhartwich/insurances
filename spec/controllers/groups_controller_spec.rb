@@ -83,7 +83,7 @@ RSpec.describe GroupsController, type: :controller do
   end
 
   describe '#destroy' do
-    let!(:group) { create(:group) }
+    let!(:group) { create(:group) }                       
     it 'deletes group' do
       expect{ delete :destroy, id: group }.to change(Group, :count).by(-1)
     end

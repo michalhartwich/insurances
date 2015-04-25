@@ -1,3 +1,7 @@
 -provide :header_title, icon('database',@group.name)
-= render 'groups/toolbox'
-= render 'groups/groupform'
+.col-xs-12
+  = render 'groups/toolbox'
+.col-sm-2
+  = render 'groups/sidebar'
+.col-sm-9
+  = render 'groups/groupform'
