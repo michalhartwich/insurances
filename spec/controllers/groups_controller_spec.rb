@@ -89,4 +89,21 @@ RSpec.describe GroupsController, type: :controller do
     end
   end
 
+  describe '#items' do
+    let!(:group) { create(:group) }
+    it 'responds successfully with an HTTP 200 status code' do
+      get :items, group_id: group
+      expect(response).to be_success
+      expect(response.status).to eq(200)
+    end
+
+    it 'lists all items from given group' do
+      it1 = create(:item, name: 'IT1', group: group)
+      it2 = create(:item, name: 'IT2', group: group)
+      group.items = [it1, it2]
+      get :items, group_id: group
+      expect(assigns(:items)).to eq([it1, it2])
+    end
+  end
+
 end
