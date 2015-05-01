@@ -1,48 +1,34 @@
 class ClientsController < ApplicationController
 
-
+  expose(:client, attributes: :client_params)
 
   def index
     @clients = Client.all
   end
 
-  def show
-    @client = Client.find(params[:id])
-  end
-
-  def new
-    @client = Client.new
-  end
-
   def create
-    @client = Client.new(client_params)
-    if @client.save
+    if client.save
       flash[:success] = t 'clients.create_success'
       redirect_to clients_path
     else
       flash.now[:danger] = t 'helpers.form_error'
-      flash.now[:errors] = @client.errors
+      flash.now[:errors] = client.errors
       render 'new'
     end
   end
 
   def destroy
-    @client = Client.destroy(params[:id])
-    flash[:success] = t 'clients.destroy_success', client: @client.full_name
+    Client.destroy(client)
+    flash[:success] = t 'clients.destroy_success', client: client.full_name
     redirect_to clients_path
   end
 
-  def edit
-    @client = Client.find(params[:id])
-  end
-
   def update
-    @client = Client.find(params[:id])
-    if @client.update_attributes(client_params)
+    if client.save
       redirect_to clients_path, success: 'dziala'
     else
       flash.now[:danger] = t 'helpers.form_error'
-      flash.now[:errors] = @client.errors
+      flash.now[:errors] = client.errors
       render 'edit'
     end
   end

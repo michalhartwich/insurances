@@ -43,10 +43,15 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.4.0)
+      railties (>= 3.0)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     bootstrap_form (2.3.0)
     builder (3.2.2)
+    bullet (4.14.5)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (4.0.5)
       columnize (= 0.9.0)
     capybara (2.4.4)
@@ -67,6 +72,7 @@ GEM
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
     debug_inspector (0.0.2)
+    decent_exposure (2.3.2)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -232,6 +238,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    select2-rails (3.5.9.3)
+      thor (~> 0.14)
     sexp_processor (4.5.0)
     shellany (0.0.1)
     shoulda-matchers (2.8.0)
@@ -256,6 +264,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.9.0)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.1.2)
@@ -272,11 +281,14 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bcrypt (~> 3.1.7)
+  bootstrap-datepicker-rails
   bootstrap-sass (~> 3.2.0)
   bootstrap_form
+  bullet
   byebug
   capybara
   coffee-rails (~> 4.1.0)
+  decent_exposure
   devise
   devise-i18n
   devise-i18n-views
@@ -295,6 +307,7 @@ DEPENDENCIES
   rspec-rails (~> 3.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  select2-rails
   shoulda-matchers
   spring
   turbolinks

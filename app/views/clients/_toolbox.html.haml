@@ -2,6 +2,6 @@
   = create_button t('helpers.back'), request.referer, icon: 'reply'
   = create_button t('clients.add'), new_client_path, icon: 'plus'
   -if read_mode?
-    = create_button t('clients.edit'), edit_client_path(@client), icon: 'pencil'
-  = create_button t('clients.delete'), client_path(@client), method: :delete, 
-      data: { confirm: t('clients.delete_confirm', client: @client.full_name) }, icon: 'trash'
+    = create_button t('clients.edit'), edit_client_path(client), icon: 'pencil'
+  = create_button t('clients.delete'), client_path(client), method: :delete, 
+      data: { confirm: t('clients.delete_confirm', client: client.full_name) }, icon: 'trash'

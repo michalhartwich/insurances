@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424203642) do
+ActiveRecord::Schema.define(version: 20150428113813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20150424203642) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "installments", force: :cascade do |t|
+    t.integer  "instable_id"
+    t.string   "instable_type"
+    t.decimal  "amount",        precision: 8, scale: 2
+    t.datetime "pay_date"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "installments", ["instable_type", "instable_id"], name: "index_installments_on_instable_type_and_instable_id", using: :btree
+
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -49,6 +60,31 @@ ActiveRecord::Schema.define(version: 20150424203642) do
   end
 
   add_index "items", ["group_id"], name: "index_items_on_group_id", using: :btree
+
+  create_table "items_material_policies", force: :cascade do |t|
+    t.integer  "material_policy_id"
+    t.integer  "item_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "items_material_policies", ["item_id"], name: "index_items_material_policies_on_item_id", using: :btree
+  add_index "items_material_policies", ["material_policy_id"], name: "index_items_material_policies_on_material_policy_id", using: :btree
+
+  create_table "material_policies", force: :cascade do |t|
+    t.integer  "client_id"
+    t.integer  "group_id"
+    t.string   "number"
+    t.datetime "sign_date"
+    t.datetime "begin_date"
+    t.datetime "expire_date"
+    t.text     "comments"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "material_policies", ["client_id"], name: "index_material_policies_on_client_id", using: :btree
+  add_index "material_policies", ["group_id"], name: "index_material_policies_on_group_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -14,4 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require select2
+//= require bootstrap-datepicker
 //= require_tree .
+
+
+Number.prototype.pad = function() {
+  return (this < 10) ? ("0" + this) : this;
+}

@@ -1,0 +1,29 @@
+=bootstrap_form_for(policy, inline_errors: false, label_errors: false) do |f|
+  .row
+    .col-xs-12
+      = f.select :client_id, options_for_select(@hints.collect{|h| [h[:hint], h[:id]]},
+          (policy.client.id if policy.client.present?)),
+          {include_blank: (true unless policy.client.present?)}, disabled: read_mode?
+    .col-sm-6
+      = f.select :group_id, options_from_collection_for_select(@groups, 'id', 'name', 
+          (policy.group.id if policy.group.present?)), 
+          {include_blank: (true unless policy.group.present?)}, disabled: read_mode?
+    .col-sm-6
+      = f.select :items, options_from_collection_for_select(@items, 'id', 'name', 
+          (policy.items.map{|i| i.id})),
+          {include_blank: (true unless policy.group.present?)}, disabled: !edit_mode?, multiple: 'multiple'
+    .col-sm-6
+      = f.text_field :number, disabled: read_mode?
+    .col-sm-6
+      = f.text_field :sign_date, value: Date.today.strftime('%d-%m-%Y'), icon: 'calendar', disabled: read_mode?
+    .col-sm-6
+      = f.text_field :begin_date, value: Date.tomorrow.strftime('%d-%m-%Y'), icon: 'calendar', disabled: read_mode?
+    .col-sm-6
+      = f.text_field :expire_date, value: Date.today.next_year.strftime('%d-%m-%Y'), icon: 'calendar', disabled: read_mode?
+    .col-sm-12
+      = f.text_area :comments, disabled: read_mode?
+    -unless read_mode?
+      .col-sm-2.pull-right
+        =f.submit t('helpers.save'), class: 'btn-block', icon: 'ok'
+      .col-sm-2.pull-right
+        = create_button t('helpers.cancel'), items_path, class: 'btn-block', icon: 'times'

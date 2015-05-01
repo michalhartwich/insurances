@@ -1,3 +1,3 @@
 .list-group
-  = link_to t('helpers.details'), group_path(@group), class: ('list-group-item' + show_active_when('show'))
-  = link_to t('groups.items'), group_items_path(@group), class: ('list-group-item' + show_active_when('items'))
+  = link_to t('helpers.details'), group_path(group), class: ('list-group-item' + show_active_when('show'))
+  = link_to t('groups.items'), group_items_path(group), class: ('list-group-item' + show_active_when('items'))

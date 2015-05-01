@@ -19,4 +19,8 @@ module ApplicationHelper
   def read_mode?
     action_name == 'show'
   end
+
+  def edit_mode?
+    action_name == 'edit'
+  end
 end

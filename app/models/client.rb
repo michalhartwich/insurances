@@ -25,6 +25,10 @@ class Client < ActiveRecord::Base
     (self.activity == 0) || self.activity.nil?
   end
 
+  def to_hint
+    {id: id, hint: "#{surname.presence} #{name.presence}, #{company.presence}, #{self.REGON.presence}, #{self.PESEL.presence}, #{street.presence} #{city.presence}"}
+  end
+
   def before_save_actions
     self.surname.capitalize!
     self.name.capitalize!

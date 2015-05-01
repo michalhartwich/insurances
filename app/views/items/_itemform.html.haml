@@ -1,11 +1,11 @@
-=bootstrap_form_for(@item, inline_errors: false, label_errors: false) do |f|
+=bootstrap_form_for(item, inline_errors: false, label_errors: false) do |f|
   .row
     .col-xs-12
       = f.text_field :name, disabled: read_mode?
     .col-xs-12
       = f.select :group_id, options_from_collection_for_select(@groups, 'id', 'name', 
-          (@item.group.id if @item.group.present?)), 
-          {include_blank: (true unless @item.group.present?)}, disabled: read_mode?
+          (item.group.id if item.group.present?)), 
+          {include_blank: (true unless item.group.present?)}, disabled: read_mode?
     .col-xs-12
       = f.text_area :description, disabled: read_mode?
     -unless read_mode?

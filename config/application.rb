@@ -39,7 +39,9 @@ module Insurances
     end 
 
     config.i18n.default_locale = :pl
+    # config.time_zone = "Warsaw"
+    # config.active_record.default_timezone = 'Warsaw'
     config.time_zone = "Warsaw"
-    config.active_record.default_timezone = 'Warsaw'
+    config.active_record.default_timezone = :local
   end
 end

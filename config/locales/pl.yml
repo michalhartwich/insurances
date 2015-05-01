@@ -1,9 +1,17 @@
 pl:
+  date:
+    datepicker:
+      default: "mm-dd-yyyy"
+      long: "MM dd, yyyy"
+    formats:
+      default: "dd-mm-yyyy"
+      long: '%B %d, %Y'
   menu:
     clients: Klienci
     policies: Polisy
     groups: Grupy
     items: Przedmioty
+    material_policies: Polisy Majątkowe
   clients:
     title: Klienci
     surname: Nazwisko
@@ -48,6 +56,21 @@ pl:
     create_success: "Przedmiot %{item} został pomyślnie utworzony."
     update_success: "Przedmiot %{item} został pomyślnie zaktualizowany."
     destroy_success: "Przedmiot %{item} został pomyślnie usunięty."
+  material_policies:
+    name: Polisy Majątkowe
+    title: "Polisa nr %{policy}"
+    add: Dodaj polisę majątkową
+    number: Nr Polisy
+    client: Klient
+    sign_date: Data zawarcia
+    begin_date: Data rozpoczęcia
+    expire_date: Data zakończenia
+    edit: Edytuj polisę
+    delete: Usuń polisę
+    delete_confirm: "Czy na pewno chcesz usunąć polisę numer %{policy}"
+    update_success: "Polisa nr %{policy} została pomyślnie zaktualizowana."
+    destroy_success: "Polisa nr %{policy} została pomyślnie usunięta."
+    create_success: "Polisa nr %{policy} została pomyślnie utworzona."
   helpers:
     save: Zapisz
     cancel: Anuluj
@@ -79,6 +102,15 @@ pl:
       item:
         name: Nazwa przedmiotu
         description: Opis
+      material_policy:
+        client_id: Klient
+        group_id: Grupa ubezpieczenia
+        items: Przedmioty ubezpieczenia
+        number: Numer polisy
+        sign_date: Data zawarcia
+        begin_date: Data rozpoczęcia
+        expire_date: Data zakończenia
+        comments: Uwagi
   activerecord:
     errors:
       models:
@@ -106,8 +138,16 @@ pl:
           attributes:
             name:
               blank: Pole Nazwa grupy jest wymagane.
-        item:
+        material_policy:
           attributes:
+            client_id: 
+              blank: Proszę wybrać klienta dla polisy.
+            group_id:
+              blank: Proszę wybrać Grupę ubiezpieczenia.
+            items:
+              blank: Proszę wybrać Przedmioty ubiezpieczenia.
+            number:
+              blank: Pole Numer polisy nie może być puste.
   time:
     formats:
       date_time: "%d-%m-%Y %H:%m"

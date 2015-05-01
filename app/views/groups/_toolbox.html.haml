@@ -2,6 +2,6 @@
   = create_button t('helpers.back'), request.referer, icon: 'reply'
   = create_button t('groups.add'), new_group_path, icon: 'plus'
   -if read_mode?
-    = create_button t('groups.edit'), edit_group_path(@group), icon: 'pencil'
-  = create_button t('groups.delete'), group_path(@group), method: :delete, 
-      data: { confirm: t('groups.delete_confirm', group: @group.name) }, icon: 'trash'
+    = create_button t('groups.edit'), edit_group_path(group), icon: 'pencil'
+  = create_button t('groups.delete'), group_path(group), method: :delete, 
+      data: { confirm: t('groups.delete_confirm', group: group.name) }, icon: 'trash'
