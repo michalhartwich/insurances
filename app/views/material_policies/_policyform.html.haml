@@ -20,10 +20,28 @@
       = f.text_field :begin_date, value: Date.tomorrow.strftime('%d-%m-%Y'), icon: 'calendar', disabled: read_mode?
     .col-sm-6
       = f.text_field :expire_date, value: Date.today.next_year.strftime('%d-%m-%Y'), icon: 'calendar', disabled: read_mode?
+    .col-sm-4
+      = f.text_field :sum, disabled: read_mode?
+    .col-sm-4
+      = f.text_field :contribution, disabled: read_mode?
+    .col-sm-4
+      = label_tag 'name', 'aaaaaa'
+      = number_field(:policy, :inst, in: 1.0..20.0, step: 1, class: 'form-control', value: 1)
+    .col-sm-12
+      %table.table.table-striped
+        %thead
+          %th
+            \#
+          %th
+            = t 'installments.amount'
+          %th
+            = t 'installments.pay_date'
+          %th
+            = t 'installments.paid'
     .col-sm-12
       = f.text_area :comments, disabled: read_mode?
     -unless read_mode?
       .col-sm-2.pull-right
         =f.submit t('helpers.save'), class: 'btn-block', icon: 'ok'
       .col-sm-2.pull-right
-        = create_button t('helpers.cancel'), items_path, class: 'btn-block', icon: 'times'
+        = create_button t('helpers.cancel'), material_policies_path, class: 'btn-block', icon: 'times'

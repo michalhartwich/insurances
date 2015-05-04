@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    Item.destroy(item)
     flash[:success] = t 'items.destroy_success', item: item.name
     redirect_to items_path
   end

@@ -59,7 +59,7 @@ pl:
   material_policies:
     name: Polisy Majątkowe
     title: "Polisa nr %{policy}"
-    add: Dodaj polisę majątkową
+    add: Dodaj polisę
     number: Nr Polisy
     client: Klient
     sign_date: Data zawarcia
@@ -71,6 +71,10 @@ pl:
     update_success: "Polisa nr %{policy} została pomyślnie zaktualizowana."
     destroy_success: "Polisa nr %{policy} została pomyślnie usunięta."
     create_success: "Polisa nr %{policy} została pomyślnie utworzona."
+  installments:
+    amount: Wysokość Raty
+    pay_date: Data zapłaty
+    paid: Zapłacono
   helpers:
     save: Zapisz
     cancel: Anuluj

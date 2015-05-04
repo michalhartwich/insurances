@@ -69,8 +69,15 @@ class MaterialPoliciesController < ApplicationController
     end
   end
 
+  def destroy
+    MaterialPolicy.destroy(policy)
+    flash[:success] = t 'material_policies.destroy_success', policy: policy.number
+    redirect_to material_policies_path
+  end
+
   private
     def policy_params
-      params.require(:material_policy).permit(:client_id, :group_id, :items, :sign_date, :begin_date, :expire_date, :number, :comments)
+      params.require(:material_policy).permit(:client_id, :group_id, :items, :sign_date, :begin_date, 
+        :expire_date, :number, :sum, :contribution, :comments)
     end
 end

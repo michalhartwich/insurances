@@ -28,6 +28,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    Group.destroy(group)
     flash[:success] = t 'groups.destroy_success', group: group.name
     redirect_to groups_path
   end

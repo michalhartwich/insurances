@@ -1,0 +1,7 @@
+.toolbox.btn-group
+  = create_button t('helpers.back'), request.referer, icon: 'reply'
+  = create_button t('material_policies.add'), new_material_policy_path, icon: 'plus'
+  -if read_mode?
+    = create_button t('material_policies.edit'), edit_material_policy_path(policy), icon: 'pencil'
+  = create_button t('material_policies.delete'), material_policy_path(policy), method: :delete, 
+    data: { confirm: t('material_policies.delete_confirm', policy: policy.number) }, icon: 'trash'
