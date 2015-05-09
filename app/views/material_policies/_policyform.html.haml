@@ -23,10 +23,9 @@
     .col-sm-4
       = f.text_field :sum, disabled: read_mode?
     .col-sm-4
-      = f.text_field :contribution, disabled: read_mode?
+      = f.text_field :contribution, disabled: read_mode?, class: 'generate-installments'
     .col-sm-4
-      = label_tag 'name', 'aaaaaa'
-      = number_field(:policy, :inst, in: 1.0..20.0, step: 1, class: 'form-control', value: @installments.count.presence || 1, disabled: read_mode?)
+      = f.number_field(:inst, in: 1.0..20.0, step: 1, class: 'form-control generate-installments', value: ((@installments.count!=0)? @installments.count : 1), disabled: read_mode?)
     .col-sm-12
       %table.table.table-striped#installments
         %thead

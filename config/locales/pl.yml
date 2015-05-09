@@ -115,6 +115,9 @@ pl:
         begin_date: Data rozpoczęcia
         expire_date: Data zakończenia
         comments: Uwagi
+        sum: Suma ubezpieczenia
+        contribution: Składka
+        inst: Ilość rat
   activerecord:
     errors:
       models:

@@ -43,10 +43,9 @@ r = ->
 
   addChangeEvent()
 
-  $('#policy_inst').on 'input', ->
-    count = parseInt($(@).val())
+  $('.generate-installments').on 'input', ->
+    count = parseInt($('#material_policy_inst').val())
     amount = parseInt($("#material_policy_contribution").val())/count
-    amount = Number((amount).toFixed(2))
     $('input[name^="installments"]').remove()
     $('#installments tbody').html('')
     now = new Date()
@@ -58,6 +57,7 @@ r = ->
         .append('<tr><td>'+i+'</td><td>'+accounting.formatNumber(amount, 2, " ")+'</td><td>'+date.format('d-m-Y')+'
           </td><td data-override="false"><input type="checkbox" class="paid"></td></tr>')
     addChangeEvent()
+
 
   $('#new_material_policy, .edit_material_policy').submit (e) ->
     $('input[name="installments"]').remove();
