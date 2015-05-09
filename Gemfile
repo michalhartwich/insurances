@@ -39,6 +39,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'decent_exposure'
 gem "select2-rails"
 gem 'bootstrap-datepicker-rails'
+gem 'accountingjs-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

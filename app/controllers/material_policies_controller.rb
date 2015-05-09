@@ -10,6 +10,7 @@ class MaterialPoliciesController < ApplicationController
     end
     @groups = Group.all
     @items = Item.all
+    # @installments = Installment.where(instable_id: policy.id)
   end
 
   def index
@@ -24,11 +25,17 @@ class MaterialPoliciesController < ApplicationController
     end
     @groups = Group.all
     @items = Item.all
+    @installments = {}
   end
 
   def create
     policy.items << Item.where(id: params[:material_policy][:items])
     if policy.save
+      installments = JSON.parse(params[:installments])
+      installments.each do |inst|
+        inst[:instable] = policy
+        Installment.create(inst)
+      end
       flash[:success] = t 'material_policies.create_success', policy: policy.number
       redirect_to material_policies_path
     else
@@ -46,6 +53,7 @@ class MaterialPoliciesController < ApplicationController
     end
     @groups = Group.all
     @items = Item.where(group_id: policy.group_id)
+    @installments = Installment.where(instable_id: policy.id)
   end
 
   def edit
@@ -56,10 +64,19 @@ class MaterialPoliciesController < ApplicationController
     end
     @groups = Group.all
     @items = Item.where(group_id: policy.group_id)
+    @installments = Installment.where(instable_id: policy.id)
   end
 
   def update
+    installments = JSON.parse(params[:installments])
+    puts YAML::dump(installments)
     if policy.save
+      Installment.where(instable_id: policy.id).destroy_all
+      installments = JSON.parse(params[:installments])
+      installments.each do |inst|
+        inst[:instable] = policy
+        Installment.create(inst)
+      end
       flash[:success] = t 'material_policies.update_success', policy: policy.number
       redirect_to material_policies_path
     else

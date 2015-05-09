@@ -1,4 +1,4 @@
-=bootstrap_form_for(policy, inline_errors: false, label_errors: false) do |f|
+=bootstrap_form_for(policy, inline_errors: false, label_errors: false, class: 'policy-form') do |f|
   .row
     .col-xs-12
       = f.select :client_id, options_for_select(@hints.collect{|h| [h[:hint], h[:id]]},
@@ -26,9 +26,9 @@
       = f.text_field :contribution, disabled: read_mode?
     .col-sm-4
       = label_tag 'name', 'aaaaaa'
-      = number_field(:policy, :inst, in: 1.0..20.0, step: 1, class: 'form-control', value: 1)
+      = number_field(:policy, :inst, in: 1.0..20.0, step: 1, class: 'form-control', value: @installments.count.presence || 1, disabled: read_mode?)
     .col-sm-12
-      %table.table.table-striped
+      %table.table.table-striped#installments
         %thead
           %th
             \#
@@ -38,10 +38,21 @@
             = t 'installments.pay_date'
           %th
             = t 'installments.paid'
+        %tbody
+          -@installments.each_with_index do |inst, index|
+            %tr
+              %td
+                = index+1
+              %td
+                = inst.amount
+              %td
+                = inst.pay_date.strftime('%d-%m-%Y')
+              %td{"data-override" => inst.paid.to_s}
+                = check_box_tag "paid_#{index}",nil, inst.paid, class: 'paid', disabled: read_mode?
     .col-sm-12
       = f.text_area :comments, disabled: read_mode?
     -unless read_mode?
       .col-sm-2.pull-right
-        =f.submit t('helpers.save'), class: 'btn-block', icon: 'ok'
+        =f.submit t('helpers.save'), class: 'btn-block save-policy', icon: 'ok'
       .col-sm-2.pull-right
         = create_button t('helpers.cancel'), material_policies_path, class: 'btn-block', icon: 'times'
