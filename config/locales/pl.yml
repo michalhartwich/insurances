@@ -34,6 +34,8 @@ pl:
     create_success: "Klient został pomyślnie dodany."
     create_error: "Formularz zawiera błędy."
     destroy_success: "Klient %{client} został pomyślnie usunięty."
+    client_data: Dane klienta
+    material_policies: Polisy majątkowe
   groups:
     name: Nazwa grupy
     description: Opis

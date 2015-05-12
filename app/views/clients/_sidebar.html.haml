@@ -1,0 +1,3 @@
+.list-group
+  = link_to t('clients.client_data'), client_path(client), class: ('list-group-item' + show_active_when('show'))
+  = link_to t('clients.material_policies'), client_material_policies_path(client), class: ('list-group-item' + show_active_when('material_policies'))

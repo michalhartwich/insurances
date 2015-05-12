@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   root to: 'clients#index'
   devise_for :users
-  resources :clients
+  resources :clients do 
+    get 'material_policies' => 'clients#material_policies'
+  end
   resources :groups do
     get 'items' => 'groups#items'
   end
   resources :items
   resources :material_policies
+  get 'material_policies/new/:client_id' => 'material_policies#new', as: :new_mp_with_client
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

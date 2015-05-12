@@ -1,3 +1,7 @@
 -provide :header_title, icon('user', client.full_name)
-= render 'clients/toolbox'
-= render 'clients/clientform'
+.col-xs-12
+	= render 'clients/toolbox'
+.col-sm-2
+	= render 'clients/sidebar'
+.col-sm-9
+	= render 'clients/clientform'

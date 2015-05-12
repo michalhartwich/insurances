@@ -2,7 +2,7 @@
   .row
     .col-xs-12
       = f.select :client_id, options_for_select(@hints.collect{|h| [h[:hint], h[:id]]},
-          (policy.client.id if policy.client.present?)),
+          (policy.client.id if policy.client.present?) || params[:client_id]),
           {include_blank: (true unless policy.client.present?)}, disabled: read_mode?
     .col-sm-6
       = f.select :group_id, options_from_collection_for_select(@groups, 'id', 'name', 

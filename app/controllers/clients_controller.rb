@@ -33,6 +33,10 @@ class ClientsController < ApplicationController
     end
   end
 
+  def material_policies
+    @policies = MaterialPolicy.where(client_id: client.id)
+  end
+
   private
     def client_params
       params.require(:client).permit(:surname, :name, :company, :REGON, :PESEL,

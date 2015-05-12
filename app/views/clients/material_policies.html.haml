@@ -1,0 +1,40 @@
+-provide :header_title, icon('home',t('clients.material_policies'))
+.row
+  .col-xs-12
+    = render 'clients/toolbox'
+  .col-sm-2
+    = render 'clients/sidebar'
+  .col-sm-10
+    %table.table.table-hover.table-striped
+      %thead
+        %tr
+          %th
+            \#
+          %th
+            = t 'material_policies.number'
+          %th
+            = t 'material_policies.sign_date'
+          %th
+            = t 'material_policies.begin_date'
+          %th
+            = t 'material_policies.expire_date'
+          %th
+            = t 'helpers.actions'
+      %tbody
+        - @policies.each_with_index do |policy, index|
+          %tr
+            %td
+              = index+1
+            %td
+              = policy.number
+            %td
+              = policy.sign_date.strftime('%d-%m-%Y')
+            %td
+              = policy.begin_date.strftime('%d-%m-%Y')
+            %td
+              = policy.expire_date.strftime('%d-%m-%Y')
+            %td
+              .btn-group
+                = create_button '', material_policy_path(policy), icon: 'bars'
+                = create_button '', edit_material_policy_path(policy), icon: 'pencil'
+                = create_button '', material_policy_path(policy), method: :delete, data: { confirm: t('material_policies.delete_confirm', policy: policy.number) }, icon: 'trash'
