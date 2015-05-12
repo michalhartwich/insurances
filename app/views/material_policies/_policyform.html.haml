@@ -1,15 +1,15 @@
 =bootstrap_form_for(policy, inline_errors: false, label_errors: false, class: 'policy-form') do |f|
   .row
     .col-xs-12
-      = f.select :client_id, options_for_select(@hints.collect{|h| [h[:hint], h[:id]]},
+      = f.select :client_id, options_for_select(@hints,
           (policy.client.id if policy.client.present?) || params[:client_id]),
           {include_blank: (true unless policy.client.present?)}, disabled: read_mode?
     .col-sm-6
-      = f.select :group_id, options_from_collection_for_select(@groups, 'id', 'name', 
+      = f.select :group_id, options_for_select(@group_hints, 
           (policy.group.id if policy.group.present?)), 
           {include_blank: (true unless policy.group.present?)}, disabled: read_mode?
     .col-sm-6
-      = f.select :items, options_from_collection_for_select(@items, 'id', 'name', 
+      = f.select :items, options_for_select(@item_hints, 
           (policy.items.map{|i| i.id})),
           {include_blank: (true unless policy.group.present?)}, disabled: !edit_mode?, multiple: 'multiple'
     .col-sm-6

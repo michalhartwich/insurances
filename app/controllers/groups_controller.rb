@@ -35,9 +35,13 @@ class GroupsController < ApplicationController
 
   def items
     @items = Item.where(group_id: params[:group_id])
+    @item_hints = []
+    @items.each do |item|
+      @item_hints << item.to_hint
+    end
     respond_to do |f|
       f.html
-      f.json {render json: @items}
+      f.json {render json: @item_hints}
     end
   end
 

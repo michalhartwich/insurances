@@ -38,7 +38,7 @@ r = ->
     $.get '/groups/'+group_id+'/items.json', (data) ->
       $('#material_policy_items').html ''
       $(data).each ->
-        $('#material_policy_items').append($('<option>').text(@name).attr('value',@id))
+        $('#material_policy_items').append($('<option>').text(@hint).attr('value',@id))
       $('#material_policy_items').attr('disabled', false)
 
   addChangeEvent()

@@ -1,30 +1,12 @@
 class MaterialPoliciesController < ApplicationController
   expose(:policy, model: :MaterialPolicy, attributes: :policy_params)
 
-  def initialize
-    super
-    @clients = Client.all
-    @hints = []
-    @clients.each do |client|
-      @hints.push(client.to_hint)
-    end
-    @groups = Group.all
-    @items = Item.all
-    # @installments = Installment.where(instable_id: policy.id)
-  end
-
   def index
     @policies = MaterialPolicy.all
   end
 
   def new
-    @clients = Client.all
-    @hints = []
-    @clients.each do |client|
-      @hints.push(client.to_hint)
-    end
-    @groups = Group.all
-    @items = Item.all
+    prepare_hints
     @installments = {}
   end
 
@@ -46,30 +28,18 @@ class MaterialPoliciesController < ApplicationController
   end
 
   def show
-    @clients = Client.all
-    @hints = []
-    @clients.each do |client|
-      @hints.push(client.to_hint)
-    end
-    @groups = Group.all
-    @items = Item.where(group_id: policy.group_id)
+    prepare_hints
     @installments = Installment.where(instable_id: policy.id)
   end
 
   def edit
-    @clients = Client.all
-    @hints = []
-    @clients.each do |client|
-      @hints.push(client.to_hint)
-    end
-    @groups = Group.all
+    prepare_hints
     @items = Item.where(group_id: policy.group_id)
     @installments = Installment.where(instable_id: policy.id)
   end
 
   def update
     installments = JSON.parse(params[:installments])
-    puts YAML::dump(installments)
     if policy.save
       Installment.where(instable_id: policy.id).destroy_all
       installments = JSON.parse(params[:installments])
@@ -96,5 +66,22 @@ class MaterialPoliciesController < ApplicationController
     def policy_params
       params.require(:material_policy).permit(:client_id, :group_id, :items, :sign_date, :begin_date, 
         :expire_date, :number, :sum, :contribution, :comments)
+    end
+
+    def prepare_hints_for(collection)
+      hints = []
+      collection.each do |i|
+        hints << i.to_hint
+      end
+      hints.collect!{|h| [h[:hint], h[:id]]}
+    end
+
+    def prepare_hints
+      clients = Client.all
+      @hints = prepare_hints_for clients
+      groups = Group.all
+      @group_hints = prepare_hints_for groups
+      items = Item.all
+      @item_hints = prepare_hints_for items
     end
 end
