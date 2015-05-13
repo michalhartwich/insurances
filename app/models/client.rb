@@ -3,12 +3,12 @@ class Client < ActiveRecord::Base
   before_save :before_save_actions
 
   validates :surname, :name, presence: true
-  validates :PESEL, presence: true, if: 'activity == 1'
-  validates :PESEL, uniqueness: true, numericality: { only_integer: true },
-            length: {is: 11}, if: -> {self.activity==1 && !self.PESEL.blank?}
-  validates :REGON, presence: true, if: 'activity == 0'
-  validates :REGON, uniqueness: true, numericality: { only_integer: true },
-            length: {is: 10}, if: -> {self.activity==0 && !self.REGON.blank?}
+  validates :pesel, presence: true, if: 'activity == 1'
+  validates :pesel, uniqueness: true, numericality: { only_integer: true },
+            length: {is: 11}, if: -> {self.activity==1 && !pesel.blank?}
+  validates :regon, presence: true, if: 'activity == 0'
+  validates :regon, uniqueness: true, numericality: { only_integer: true },
+            length: {is: 10}, if: -> {self.activity==0 && !regon.blank?}
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :e_mail, presence: true, format: {with: VALID_EMAIL_REGEX},
@@ -26,8 +26,8 @@ class Client < ActiveRecord::Base
   end
 
   def to_hint
-    {id: id, hint: "#{surname.presence} #{name.presence}, " + ([company.presence, self.REGON.presence, 
-      self.PESEL.presence, street.presence, city.presence]).compact.join(', ')}
+    {id: id, hint: "#{surname.presence} #{name.presence}, " + ([company.presence, regon.presence, 
+      pesel.presence, street.presence, city.presence]).compact.join(', ')}
   end
 
   def before_save_actions

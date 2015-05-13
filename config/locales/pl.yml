@@ -91,8 +91,8 @@ pl:
         surname: Nazwisko
         name: Imię
         company: Firma
-        PESEL: PESEL
-        REGON: REGON
+        pesel: PESEL
+        regon: REGON
         telephone_number: Telefon
         activity: Rodzaj działalności
         e_mail: E-mail
@@ -129,12 +129,12 @@ pl:
               blank: Pole Nazwisko jest wymagane.
             name:
               blank: Pole Imię jest wymagane.
-            REGON:
+            regon:
               blank: Pole REGON jest wymagane.
               taken: "Klient o podanym REGON-ie już istnieje."
               not_a_number: "Podany REGON zawiera niedozwolone znaki."
               wrong_length: "Podany REGON ma nieprawidłową długość."
-            PESEL:
+            pesel:
               blank: Pole PESEL jest wymagane.
               taken: "Klient o podanym PESEL-u już istnieje."
               not_a_number: "Podany PESEL zawiera niedozwolone znaki."

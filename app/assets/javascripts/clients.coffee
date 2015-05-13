@@ -12,5 +12,9 @@ r = ->
       $('.company').toggleClass 'hide'
       $('.regon').toggleClass 'hide'
 
+  $('#client_zip_code').mask('99-999')
+  $('#client_pesel').mask('99999999999')
+  # $('#client_regon').mask('9999999999')
+
 $(document).ready(r)
 $(document).on('page:load', r)

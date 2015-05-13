@@ -11,9 +11,9 @@
           =f.radio_button :activity, 0, label: t('clients.company'), inline: true, checked: true, class: ('checked' if client.is_company?)
           =f.radio_button :activity, 1, label: t('clients.private'), inline: true, class: ('checked' unless client.is_company?)
     .col-sm-6.regon{class: ('hide' unless client.is_company?)}
-      =f.text_field :REGON, disabled: read_mode?
+      =f.text_field :regon, disabled: read_mode?
     .col-sm-6.pesel{class: ('hide' if client.is_company?)}
-      =f.text_field :PESEL, disabled: read_mode?
+      =f.text_field :pesel, disabled: read_mode?
     .col-sm-12.company{class: ('hide' unless client.is_company?)}
       =f.text_field :company, disabled: read_mode?
     .col-sm-6

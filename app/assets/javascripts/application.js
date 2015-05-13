@@ -17,6 +17,7 @@
 //= require select2
 //= require bootstrap-datepicker
 //= require accountingjs
+//= require jquery.maskedinput.min
 //= require_tree .
 
 
